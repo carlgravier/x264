@@ -130,8 +130,8 @@ static cl_program x264_opencl_cache_load( x264_t *h, const char *dev_name, const
     cl_program program = NULL;
     uint8_t *binary = NULL;
 
-    fseek( fp, 0, SEEK_END );
-    size_t size = ftell( fp );
+    _fseeki64( fp, 0, SEEK_END );
+    size_t size = _ftelli64( fp );
     rewind( fp );
     CHECKED_MALLOC( binary, size );
 

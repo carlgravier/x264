@@ -38,7 +38,7 @@
 #endif
 
 #include <signal.h>
-#include <getopt.h>
+#include "msys64\usr\include\getopt.h"
 #include "common/common.h"
 #include "x264cli.h"
 #include "input/input.h"

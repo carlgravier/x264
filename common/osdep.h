@@ -267,7 +267,7 @@ static ALWAYS_INLINE int x264_pthread_fetch_and_add( int *val, int add, x264_pth
 
 #define WORD_SIZE sizeof(void*)
 
-#define asm __asm__
+#define asm __asm
 
 #if WORDS_BIGENDIAN
 #define endian_fix(x) (x)
@@ -275,7 +275,7 @@ static ALWAYS_INLINE int x264_pthread_fetch_and_add( int *val, int add, x264_pth
 #define endian_fix32(x) (x)
 #define endian_fix16(x) (x)
 #else
-#if HAVE_X86_INLINE_ASM && HAVE_MMX
+#if HAVE_X86_INLINE_ASM && HAVE_MMX && ENABLED
 static ALWAYS_INLINE uint32_t endian_fix32( uint32_t x )
 {
     asm("bswap %0":"+r"(x));
@@ -293,7 +293,7 @@ static ALWAYS_INLINE uint32_t endian_fix32( uint32_t x )
     return (x<<24) + ((x<<8)&0xff0000) + ((x>>8)&0xff00) + (x>>24);
 }
 #endif
-#if HAVE_X86_INLINE_ASM && ARCH_X86_64
+#if HAVE_X86_INLINE_ASM && ARCH_X86_64 && ENABLED
 static ALWAYS_INLINE uint64_t endian_fix64( uint64_t x )
 {
     asm("bswap %0":"+r"(x));
@@ -351,7 +351,7 @@ static int ALWAYS_INLINE x264_ctz( uint32_t x )
 }
 #endif
 
-#if HAVE_X86_INLINE_ASM && HAVE_MMX
+#if HAVE_X86_INLINE_ASM && HAVE_MMX && ENABLED
 /* Don't use __builtin_prefetch; even as recent as 4.3.4, GCC seems incapable of
  * using complex address modes properly unless we use inline asm. */
 static ALWAYS_INLINE void x264_prefetch( void *p )

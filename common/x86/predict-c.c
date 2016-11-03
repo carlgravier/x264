@@ -76,7 +76,7 @@ static void x264_predict_16x16_p_##name( pixel *src )\
     PREDICT_16x16_P_END(name2)\
 }
 
-#if HAVE_X86_INLINE_ASM
+#if HAVE_X86_INLINE_ASM && ENABLED
 #if HIGH_BIT_DEPTH
 #define PREDICT_16x16_P_ASM\
     asm (\
@@ -217,7 +217,7 @@ static void x264_predict_8x8c_p_##name( pixel *src )\
     PREDICT_8x8C_P_END(name2)\
 }
 
-#if HAVE_X86_INLINE_ASM
+#if HAVE_X86_INLINE_ASM && ENABLED
 #if HIGH_BIT_DEPTH
 #define PREDICT_8x8C_P_ASM\
     asm (\
@@ -353,7 +353,7 @@ void x264_predict_16x16_init_mmx( int cpu, x264_predict_t pf[7] )
         return;
     if( !(cpu&X264_CPU_SLOW_PSHUFB) )
         pf[I_PRED_16x16_H]       = x264_predict_16x16_h_ssse3;
-#if HAVE_X86_INLINE_ASM
+#if HAVE_X86_INLINE_ASM && ENABLED
     pf[I_PRED_16x16_P]       = x264_predict_16x16_p_ssse3;
 #endif
     if( !(cpu&X264_CPU_AVX) )

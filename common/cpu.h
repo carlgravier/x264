@@ -34,7 +34,7 @@ void     x264_cpu_sfence( void );
 /* There is no way to forbid the compiler from using float instructions
  * before the emms so miscompilation could theoretically occur in the
  * unlikely event that the compiler reorders emms and float instructions. */
-#if HAVE_X86_INLINE_ASM
+#if HAVE_X86_INLINE_ASM && ENABLED
 /* Clobbering memory makes the compiler less likely to reorder code. */
 #define x264_emms() asm volatile( "emms":::"memory","st","st(1)","st(2)", \
                                   "st(3)","st(4)","st(5)","st(6)","st(7)" )

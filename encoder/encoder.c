@@ -91,7 +91,7 @@ static void x264_frame_dump( x264_t *h )
 
     /* Write the frame in display order */
     int frame_size = FRAME_SIZE( h->param.i_height * h->param.i_width * sizeof(pixel) );
-    if( !fseek( f, (int64_t)h->fdec->i_frame * frame_size, SEEK_SET ) )
+    if( !_fseeki64( f, (int64_t)h->fdec->i_frame * frame_size, SEEK_SET ) )
     {
         for( int p = 0; p < (CHROMA444 ? 3 : 1); p++ )
             for( int y = 0; y < h->param.i_height; y++ )
