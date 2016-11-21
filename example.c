@@ -31,6 +31,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <x264.h>
+#include <x264_api.h>
 
 #define FAIL_IF_ERROR( cond, ... )\
 do\
@@ -42,7 +43,7 @@ do\
     }\
 } while( 0 )
 
-int main( int argc, char **argv )
+int main_impl(int argc, char **argv)
 {
     int width, height;
     x264_param_t param;
@@ -137,4 +138,9 @@ fail2:
     x264_picture_clean( &pic );
 fail:
     return -1;
+}
+
+int main( int argc, char **argv )
+{
+    return main_impl(argc, argv);
 }
