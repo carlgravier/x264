@@ -41,9 +41,12 @@ checkasm
 *.pyc
 *.pgd
 *.pgc
+*.obj
 
 .digress_x264
 dataDec.txt
 log.dec
 common/oclobj.h
 x264_lookahead.clbin
+
+build-dir
